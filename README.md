@@ -3,6 +3,48 @@
 Two independent Spring Boot microservices in one repository.  
 Walk through each concept in order using the file links below — every link opens the actual source file.
 
+**GitHub Repository:** https://github.com/ragav101/todo-app-cicd.git
+
+---
+
+## Repository & Branching
+
+| Branch | Purpose |
+|--------|---------|
+| `main` | Production-ready code only — always stable and deployable |
+| `develop` | Active development — all features and fixes merge here first |
+
+**Clone the repository:**
+```bash
+git clone https://github.com/ragav101/todo-app-cicd.git
+cd todo-app-cicd
+```
+
+**Branch workflow:**
+```bash
+# Start a new feature from develop
+git checkout develop
+git checkout -b feature/your-feature-name
+
+# Merge completed feature back into develop
+git checkout develop
+git merge feature/your-feature-name
+git push origin develop
+
+# When develop is stable, merge into main for release
+git checkout main
+git merge develop
+git push origin main
+```
+
+**Branch naming conventions:**
+
+| Prefix | Purpose | Example |
+|--------|---------|---------|
+| `feature/*` | New functionality | `feature/add-pagination` |
+| `fix/*` | Bug fixes on develop | `fix/soft-delete-not-working` |
+| `hotfix/*` | Urgent fix off main | `hotfix/db-connection-timeout` |
+
 ---
 
 ## Project Structure
