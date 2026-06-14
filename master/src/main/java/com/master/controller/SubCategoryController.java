@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class SubCategoryController {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "409", description = "SubCategory name already exists in this category")
     })
     @PostMapping
-    public ResponseEntity<ApiResponse<SubCategoryResponseDto>> create(@RequestBody SubCategoryRequestDto request) {
+    public ResponseEntity<ApiResponse<SubCategoryResponseDto>> create(@Valid @RequestBody SubCategoryRequestDto request) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success("SubCategory created successfully", subCategoryService.create(request)));
     }
@@ -69,7 +70,7 @@ public class SubCategoryController {
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<SubCategoryResponseDto>> update(
             @Parameter(description = "SubCategory ID") @PathVariable Long id,
-            @RequestBody SubCategoryRequestDto request) {
+            @Valid @RequestBody SubCategoryRequestDto request) {
         return ResponseEntity.ok(ApiResponse.success("SubCategory updated successfully", subCategoryService.update(id, request)));
     }
 
