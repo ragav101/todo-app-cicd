@@ -1,0 +1,371 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Todo Backend API",
+    "description": "Complete API collection for Master (port 8080) and Todo (port 8081) microservices.\n\nVariables:\n- master_base_url → http://localhost:8080\n- todo_base_url   → http://localhost:8081\n\nWorkflow:\n1. Create a Category\n2. Create a SubCategory under that Category\n3. Create a Todo referencing userId, categoryId, subCategoryId",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "master_base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "todo_base_url",
+      "value": "http://localhost:8081",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Master API",
+      "description": "Reference data service — Categories and SubCategories",
+      "item": [
+        {
+          "name": "Category",
+          "item": [
+            {
+              "name": "Create Category",
+              "request": {
+                "method": "POST",
+                "header": [
+                  { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Work\",\n  \"description\": \"Work related tasks and projects\"\n}",
+                  "options": { "raw": { "language": "json" } }
+                },
+                "url": {
+                  "raw": "{{master_base_url}}/api/categories",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "categories"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get All Categories",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{master_base_url}}/api/categories",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "categories"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Category By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{master_base_url}}/api/categories/1",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "categories", "1"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Category",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Work & Career\",\n  \"description\": \"Work, career, and professional development tasks\"\n}",
+                  "options": { "raw": { "language": "json" } }
+                },
+                "url": {
+                  "raw": "{{master_base_url}}/api/categories/1",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "categories", "1"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Category (Soft)",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{master_base_url}}/api/categories/1",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "categories", "1"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "SubCategory",
+          "item": [
+            {
+              "name": "Create SubCategory",
+              "request": {
+                "method": "POST",
+                "header": [
+                  { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Meetings\",\n  \"description\": \"Scheduled meetings and calls\",\n  \"categoryId\": 1\n}",
+                  "options": { "raw": { "language": "json" } }
+                },
+                "url": {
+                  "raw": "{{master_base_url}}/api/subcategories",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "subcategories"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get All SubCategories",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{master_base_url}}/api/subcategories",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "subcategories"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get SubCategory By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{master_base_url}}/api/subcategories/1",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "subcategories", "1"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get SubCategories By Category",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{master_base_url}}/api/subcategories/category/1",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "subcategories", "category", "1"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update SubCategory",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Team Meetings\",\n  \"description\": \"Team syncs and standup meetings\",\n  \"categoryId\": 1\n}",
+                  "options": { "raw": { "language": "json" } }
+                },
+                "url": {
+                  "raw": "{{master_base_url}}/api/subcategories/1",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "subcategories", "1"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete SubCategory (Soft)",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{master_base_url}}/api/subcategories/1",
+                  "host": ["{{master_base_url}}"],
+                  "path": ["api", "subcategories", "1"]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Todo API",
+      "description": "Todo management service — full CRUD with status and priority control",
+      "item": [
+        {
+          "name": "Todo",
+          "item": [
+            {
+              "name": "Create Todo",
+              "request": {
+                "method": "POST",
+                "header": [
+                  { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Prepare Q3 report\",\n  \"description\": \"Compile sales data and create slides for the Q3 review\",\n  \"dueDate\": \"2026-06-30\",\n  \"priority\": \"HIGH\",\n  \"userId\": 1,\n  \"categoryId\": 1,\n  \"subCategoryId\": 1\n}",
+                  "options": { "raw": { "language": "json" } }
+                },
+                "url": {
+                  "raw": "{{todo_base_url}}/api/todos",
+                  "host": ["{{todo_base_url}}"],
+                  "path": ["api", "todos"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get All Todos",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{todo_base_url}}/api/todos",
+                  "host": ["{{todo_base_url}}"],
+                  "path": ["api", "todos"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Todo By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{todo_base_url}}/api/todos/1",
+                  "host": ["{{todo_base_url}}"],
+                  "path": ["api", "todos", "1"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Todos By User",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{todo_base_url}}/api/todos/user/1",
+                  "host": ["{{todo_base_url}}"],
+                  "path": ["api", "todos", "user", "1"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Todos By Status — PENDING",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{todo_base_url}}/api/todos/status/PENDING",
+                  "host": ["{{todo_base_url}}"],
+                  "path": ["api", "todos", "status", "PENDING"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Todos By Status — IN_PROGRESS",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{todo_base_url}}/api/todos/status/IN_PROGRESS",
+                  "host": ["{{todo_base_url}}"],
+                  "path": ["api", "todos", "status", "IN_PROGRESS"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Todos By Status — COMPLETED",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{todo_base_url}}/api/todos/status/COMPLETED",
+                  "host": ["{{todo_base_url}}"],
+                  "path": ["api", "todos", "status", "COMPLETED"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Todo",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Prepare Q3 report (updated)\",\n  \"description\": \"Compile sales data, create slides, and add executive summary\",\n  \"dueDate\": \"2026-07-05\",\n  \"priority\": \"URGENT\",\n  \"userId\": 1,\n  \"categoryId\": 1,\n  \"subCategoryId\": 1\n}",
+                  "options": { "raw": { "language": "json" } }
+                },
+                "url": {
+                  "raw": "{{todo_base_url}}/api/todos/1",
+                  "host": ["{{todo_base_url}}"],
+                  "path": ["api", "todos", "1"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Todo Status",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  { "key": "Content-Type", "value": "application/json" }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"IN_PROGRESS\"\n}",
+                  "options": { "raw": { "language": "json" } }
+                },
+                "url": {
+                  "raw": "{{todo_base_url}}/api/todos/1/status",
+                  "host": ["{{todo_base_url}}"],
+                  "path": ["api", "todos", "1", "status"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Todo",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{todo_base_url}}/api/todos/1",
+                  "host": ["{{todo_base_url}}"],
+                  "path": ["api", "todos", "1"]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
